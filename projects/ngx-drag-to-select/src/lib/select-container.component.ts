@@ -163,6 +163,7 @@ export class SelectContainerComponent implements AfterViewInit, OnDestroy {
       );
 
       const mousedown$ = fromEvent<MouseEvent>(this.host, 'mousedown').pipe(
+        filter(event => !event.target['draggable']),
         filter(event => event.button === 0), // only emit left mouse
         filter(() => !this.disabled),
         tap(event => this._onMouseDown(event)),
