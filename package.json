@@ -1,6 +1,6 @@
 {
-  "name": "ngx-drag-to-select",
-  "version": "3.0.6",
+  "name": "ngx-drag-to-select-fix",
+  "version": "3.0.7",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
