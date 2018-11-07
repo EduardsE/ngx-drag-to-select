@@ -35,11 +35,41 @@
     <div class="drag-area">
       <dts-select-container #selectContainer="dts-select-container" [selectMode]="selectMode" [(selectedItems)]="selectedDocuments"
         [disabled]="disable" [selectOnDrag]="selectOnDrag" [selectWithShortcut]="selectWithShortcut" (select)="onSelect($event)">
+
+        <section dndDropzone
+        (dndDragover)="onDragover($event)"
+        (dndDrop)="onDrop($event)">
+
+          dropzone
+
+          <!--optional placeholder element for dropzone-->
+          <!--will be removed from DOM on init-->
+          <div style="border: 1px orangered solid; border-radius: 5px; padding: 15px;"
+                dndPlaceholderRef>
+              placeholder
+          </div>
+
+        </section>
+
         <mat-grid-list cols="4" rowHeight="200px" gutterSize="20px">
           <mat-grid-tile [dtsSelectItem]="document" *ngFor="let document of documents">
             {{ document.name }}
           </mat-grid-tile>
         </mat-grid-list>
+
+        <div [dndDraggable]="document"
+            [dndEffectAllowed]="draggable.effectAllowed"
+            [dndDisableIf]="draggable.disable"
+            (dndStart)="onDragStart($event)"
+            (dndCopied)="onDraggableCopied($event)"
+            (dndLinked)="onDraggableLinked($event)"
+            (dndMoved)="onDraggableMoved($event)"
+            (dndCanceled)="onDragCanceled($event)"
+            (dndEnd)="onDragEnd($event)">
+
+            <p>DRAG_IMAGE</p>
+        </div>
+
       </dts-select-container>
     </div>
 

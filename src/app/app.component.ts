@@ -2,6 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer, Title } from '@angular/platform-browser';
+import { DndDropEvent } from 'ngx-drag-drop';
 
 const json = require('../../projects/ngx-drag-to-select/package.json');
 
@@ -18,6 +19,15 @@ export class AppComponent implements OnInit {
   disable = false;
   isDesktop = false;
   selectWithShortcut = false;
+
+  draggable = {
+    // note that data is handled with JSON.stringify/JSON.parse
+    // only set simple data or POJO's as methods will be lost
+    data: "myDragData",
+    effectAllowed: "all",
+    disable: false,
+  };
+
 
   constructor(
     private titleService: Title,
@@ -50,7 +60,27 @@ export class AppComponent implements OnInit {
     }
   }
 
+
   onSelect(items: Array<any>) {
     // Do something with the selected items
+  }
+
+
+  onDragStart(event: DragEvent) {}
+
+  onDragEnd(event: DragEvent) {}
+
+  onDraggableCopied(event: DragEvent) {}
+
+  onDraggableLinked(event: DragEvent) {}
+
+  onDraggableMoved(event: DragEvent) {}
+
+  onDragCanceled(event: DragEvent) {}
+
+  onDragover(event: DragEvent) {
+  }
+
+  onDrop(event: DndDropEvent) {
   }
 }

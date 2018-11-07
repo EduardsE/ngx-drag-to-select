@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 
 import { DragToSelectModule } from '../../projects/ngx-drag-to-select/src/public_api';
+import { DndModule } from 'ngx-drag-drop';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -61,7 +62,8 @@ const MATERIAL_MODULES = [
     LayoutModule,
     FormsModule,
     ...MATERIAL_MODULES,
-    DragToSelectModule.forRoot()
+    DragToSelectModule.forRoot(),
+    DndModule
   ],
   providers: [],
   bootstrap: [AppComponent]
