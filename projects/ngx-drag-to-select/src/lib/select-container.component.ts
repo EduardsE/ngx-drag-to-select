@@ -63,6 +63,7 @@ import {
   hasMinimumSize
 } from './utils';
 
+
 @Component({
   selector: 'dts-select-container',
   exportAs: 'dts-select-container',
@@ -171,6 +172,7 @@ export class SelectContainerComponent implements AfterViewInit, OnDestroy {
       );
 
       const dragging$ = mousedown$.pipe(
+        filter(event => !this._hasParentWithMatchingSelector(event.target, '[draggable="true"]')),
         filter(event => !this.shortcuts.disableSelection(event)),
         filter(() => !this.selectMode),
         filter(() => !this.disableDrag),
@@ -553,5 +555,12 @@ export class SelectContainerComponent implements AfterViewInit, OnDestroy {
 
   private _hasItem(item: SelectItemDirective, selectedItems: Array<any>) {
     return selectedItems.includes(item.value);
+  }
+
+
+  private _hasParentWithMatchingSelector (target, selector) {
+    return Array.prototype.slice.call(document.querySelectorAll(selector)).find(el =>
+      el !== target && el.contains(target)
+    )
   }
 }
