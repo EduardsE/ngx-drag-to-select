@@ -1,6 +1,6 @@
 {
   "name": "ngx-drag-to-select-fix",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "A lightweight, fast, configurable and reactive drag-to-select component for Angular 6 and beyond",
   "sideEffects": false,
   "peerDependencies": {
